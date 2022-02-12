@@ -28,4 +28,20 @@ RSpec.describe "the Professor index page" do
       expect(page).to have_content(@lupin.specialty)
     end
   end
+
+  it "can see all professors listed alphabetically." do
+    visit "/professors"
+
+    within("#professor-#{@lupin.id}") do
+      expect(page).to have_content(@lupin.name)
+    end
+
+    within("#professor-#{@hagarid.id}") do
+      expect(page).to have_content(@hagarid.name)
+    end
+
+    within("#professor-#{@snape.id}") do
+      expect(page).to have_content(@snape.name)
+    end
+  end
 end
