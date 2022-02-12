@@ -1,4 +1,6 @@
-class Professor <ApplicationRecord
+class Professor < ApplicationRecord
+  # include Alphabetically
+
   validates_presence_of :name
   validates_presence_of :age
   validates_presence_of :specialty
@@ -8,5 +10,9 @@ class Professor <ApplicationRecord
 
   def student_average_age
     students.average(:age).to_i
+  end
+
+  def self.alphabetically
+    order(name: :asc)
   end
 end

@@ -1,4 +1,4 @@
-<% @professors.each do |professor| %>
+<% @professors.alphabetically.each do |professor| %>
   <section id="professor-<%= professor.id %>">
     <h1><%= professor.name %></h1>
     <p>Age: <%= professor.age %></p>

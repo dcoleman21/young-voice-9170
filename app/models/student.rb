@@ -1,4 +1,6 @@
-class Student <ApplicationRecord
+class Student < ApplicationRecord
+  # include Alphabetically
+
   validates_presence_of :name
   validates_presence_of :age
   validates_presence_of :house
@@ -8,5 +10,9 @@ class Student <ApplicationRecord
 
   def number_of_professors
     professors.count
+  end
+
+  def self.alphabetically
+    order(name: :asc)
   end
 end

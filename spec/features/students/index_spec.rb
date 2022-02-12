@@ -38,4 +38,20 @@ RSpec.describe "students index page" do
       expect(page).to have_content(@longbottom.number_of_professors)
     end
   end
+
+  it "can see all students listed alphabetically." do
+    visit "/students"
+
+    within("#student-#{@malfoy.id}") do
+      expect(page).to have_content(@malfoy.name)
+    end
+
+    within("#student-#{@harry.id}") do
+      expect(page).to have_content(@harry.name)
+    end
+
+    within("#student-#{@longbottom.id}") do
+      expect(page).to have_content(@longbottom.name)
+    end
+  end
 end
