@@ -15,6 +15,13 @@ RSpec.describe "Professor show page" do
     visit "/professors/#{@snape.id}"
 
     expect(page).to have_content("Professor #{@snape.name}'s students")
+    expect(page).to have_content("Students:")
     expect(page).to have_content(@harry.name)
+  end
+
+  it "can see the average age of all students for that professor" do
+    visit "/professors/#{@snape.id}"
+
+    expect(page).to have_content("Average Age: #{@snape.student_average_age}")
   end
 end
