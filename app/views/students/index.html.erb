@@ -1,5 +1,5 @@
 <h1>Students Index</h1>
-<% @students.alphabetically.each do |student| %>
+<% @students.each do |student| %>
   <section id="student-<%= student.id %>">
     <li><%= student.name %>: <%= student.number_of_professors %></li>
   </section>

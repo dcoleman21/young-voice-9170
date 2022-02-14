@@ -14,18 +14,42 @@ RSpec.describe "the Professor index page" do
       expect(page).to have_content(@snape.name)
       expect(page).to have_content(@snape.age)
       expect(page).to have_content(@snape.specialty)
+
+      expect(page).to_not have_content(@hagarid.name)
+      expect(page).to_not have_content(@hagarid.age)
+      expect(page).to_not have_content(@hagarid.specialty)
+
+      expect(page).to_not have_content(@lupin.name)
+      expect(page).to_not have_content(@lupin.age)
+      expect(page).to_not have_content(@lupin.specialty)
     end
 
     within("#professor-#{@hagarid.id}") do
       expect(page).to have_content(@hagarid.name)
       expect(page).to have_content(@hagarid.age)
       expect(page).to have_content(@hagarid.specialty)
+
+      expect(page).to_not have_content(@lupin.name)
+      expect(page).to_not have_content(@lupin.age)
+      expect(page).to_not have_content(@lupin.specialty)
+
+      expect(page).to_not have_content(@snape.name)
+      expect(page).to_not have_content(@snape.age)
+      expect(page).to_not have_content(@snape.specialty)
     end
 
     within("#professor-#{@lupin.id}") do
       expect(page).to have_content(@lupin.name)
       expect(page).to have_content(@lupin.age)
       expect(page).to have_content(@lupin.specialty)
+
+      expect(page).to_not have_content(@snape.name)
+      expect(page).to_not have_content(@snape.age)
+      expect(page).to_not have_content(@snape.specialty)
+
+      expect(page).to_not have_content(@hagarid.name)
+      expect(page).to_not have_content(@hagarid.age)
+      expect(page).to_not have_content(@hagarid.specialty)
     end
   end
 

@@ -6,9 +6,16 @@ RSpec.describe "Professor show page" do
     @hagarid = Professor.create(name: "Rubeus Hagrid", age: 38 , specialty: "Care of Magical Creatures")
     @lupin = Professor.create(name: "Remus Lupin", age: 49 , specialty: "Defense Against The Dark Arts")
 
-    @harry = @snape.students.create(name: "Harry Potter" , age: 11 , house: "Gryffindor" )
-    @malfoy = @hagarid.students.create(name: "Draco Malfoy" , age: 12 , house: "Slytherin" )
-    @longbottom = @lupin.students.create(name: "Neville Longbottom" , age: 11 , house: "Gryffindor" )
+    @harry = Student.create(name: "Harry Potter" , age: 11 , house: "Gryffindor" )
+    @malfoy = Student.create(name: "Draco Malfoy" , age: 12 , house: "Slytherin" )
+    @longbottom = Student.create(name: "Neville Longbottom" , age: 11 , house: "Gryffindor" )
+
+    ProfessorStudent.create(student_id: @harry.id, professor_id: @snape.id)
+    ProfessorStudent.create(student_id: @harry.id, professor_id: @hagarid.id)
+    ProfessorStudent.create(student_id: @harry.id, professor_id: @lupin.id)
+    ProfessorStudent.create(student_id: @malfoy.id, professor_id: @hagarid.id)
+    ProfessorStudent.create(student_id: @malfoy.id, professor_id: @lupin.id)
+    ProfessorStudent.create(student_id: @longbottom.id, professor_id: @snape.id)
   end
 
   it "can see a list of names of the students the professors have" do
@@ -17,6 +24,8 @@ RSpec.describe "Professor show page" do
     expect(page).to have_content("Professor #{@snape.name}'s students")
     expect(page).to have_content("Students:")
     expect(page).to have_content(@harry.name)
+    expect(page).to have_content(@longbottom.name)
+    expect(page).to_not have_content(@malfoy.name)
   end
 
   it "can see the average age of all students for that professor" do

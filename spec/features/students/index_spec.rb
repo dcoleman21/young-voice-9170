@@ -26,16 +26,34 @@ RSpec.describe "students index page" do
     within("#student-#{@harry.id}") do
       expect(page).to have_content(@harry.name)
       expect(page).to have_content(@harry.number_of_professors)
+
+      expect(page).to_not have_content(@malfoy.name)
+      expect(page).to_not have_content(@malfoy.number_of_professors)
+
+      expect(page).to_not have_content(@longbottom.name)
+      expect(page).to_not have_content(@longbottom.number_of_professors)
     end
 
     within("#student-#{@malfoy.id}") do
       expect(page).to have_content(@malfoy.name)
       expect(page).to have_content(@malfoy.number_of_professors)
+
+      expect(page).to_not have_content(@harry.name)
+      expect(page).to_not have_content(@harry.number_of_professors)
+
+      expect(page).to_not have_content(@longbottom.name)
+      expect(page).to_not have_content(@longbottom.number_of_professors)
     end
 
     within("#student-#{@longbottom.id}") do
       expect(page).to have_content(@longbottom.name)
       expect(page).to have_content(@longbottom.number_of_professors)
+
+      expect(page).to_not have_content(@harry.name)
+      expect(page).to_not have_content(@harry.number_of_professors)
+
+      expect(page).to_not have_content(@malfoy.name)
+      expect(page).to_not have_content(@malfoy.number_of_professors)
     end
   end
 
