@@ -1,5 +1,5 @@
-<% @professors.each do |professor| %>
-  <section id="professor-<%= professor.id %>">
+<% @professors.each_with_index do |professor, index| %>
+  <section id="professor-<%= index %>">
     <h1><%= professor.name %></h1>
     <p>Age: <%= professor.age %></p>
     <p>Specialty: <%= professor.specialty %></p>

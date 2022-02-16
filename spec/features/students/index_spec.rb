@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "students index page" do
+RSpec.describe 'student index page' do
   before(:each) do
     @snape = Professor.create(name: "Severus Snape", age: 45, specialty: "Potions")
     @hagarid = Professor.create(name: "Rubeus Hagrid", age: 38 , specialty: "Care of Magical Creatures")
@@ -18,57 +18,32 @@ RSpec.describe "students index page" do
     ProfessorStudent.create(student_id: @longbottom.id, professor_id: @snape.id)
   end
 
-  it "can see a list of students and the number of professors each one has" do
-    visit "/students"
+  it "can see a list of students and the number of professors each student has" do
+    visit '/students'
 
-    expect(page).to have_content("Students Index")
+    expect(page).to have_content(@harry.name)
+    expect(page).to have_content(@harry.number_of_professors)
+    # expect(page).to have_content("#{@harry.name}: #{@harry.number_of_professors}")
 
-    within("#student-#{@harry.id}") do
-      expect(page).to have_content(@harry.name)
-      expect(page).to have_content(@harry.number_of_professors)
+    expect(page).to have_content(@malfoy.name)
+    expect(page).to have_content(@malfoy.number_of_professors)
 
-      expect(page).to_not have_content(@malfoy.name)
-      expect(page).to_not have_content(@malfoy.number_of_professors)
-
-      expect(page).to_not have_content(@longbottom.name)
-      expect(page).to_not have_content(@longbottom.number_of_professors)
-    end
-
-    within("#student-#{@malfoy.id}") do
-      expect(page).to have_content(@malfoy.name)
-      expect(page).to have_content(@malfoy.number_of_professors)
-
-      expect(page).to_not have_content(@harry.name)
-      expect(page).to_not have_content(@harry.number_of_professors)
-
-      expect(page).to_not have_content(@longbottom.name)
-      expect(page).to_not have_content(@longbottom.number_of_professors)
-    end
-
-    within("#student-#{@longbottom.id}") do
-      expect(page).to have_content(@longbottom.name)
-      expect(page).to have_content(@longbottom.number_of_professors)
-
-      expect(page).to_not have_content(@harry.name)
-      expect(page).to_not have_content(@harry.number_of_professors)
-
-      expect(page).to_not have_content(@malfoy.name)
-      expect(page).to_not have_content(@malfoy.number_of_professors)
-    end
+    expect(page).to have_content(@longbottom.name)
+    expect(page).to have_content(@longbottom.number_of_professors)
   end
 
-  it "can see all students listed alphabetically." do
+  it "can see all students listed alphabetically" do
     visit "/students"
 
-    within("#student-#{@malfoy.id}") do
+    within("#student-0") do
       expect(page).to have_content(@malfoy.name)
     end
 
-    within("#student-#{@harry.id}") do
+    within("#student-1") do
       expect(page).to have_content(@harry.name)
     end
 
-    within("#student-#{@longbottom.id}") do
+    within("#student-2") do
       expect(page).to have_content(@longbottom.name)
     end
   end

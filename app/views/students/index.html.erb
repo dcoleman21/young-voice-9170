@@ -1,6 +1,6 @@
-<h1>Students Index</h1>
-<% @students.each do |student| %>
-  <section id="student-<%= student.id %>">
-    <li><%= student.name %>: <%= student.number_of_professors %></li>
+<h1>Students and Professor Count</h1>
+<% @students.each_with_index do |student, index| %>
+  <section id="student-<%= index %>">
+    <li> <%= student.name %>: <%= student.number_of_professors %></li>
   </section>
 <% end %>
